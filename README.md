@@ -9,6 +9,7 @@
 2. https://jcaptcha.atlassian.net/wiki/spaces/general/pages/1212438/Simple+Servlet+Integration+documentation
 3.使用 SimpleImageCaptchaServlet.validateResponse(req, "");进行验证码校验
 
+
 ### Maven
 
 ``` xml
