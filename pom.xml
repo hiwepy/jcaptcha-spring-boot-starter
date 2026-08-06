@@ -421,6 +421,9 @@
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
+                <freetts.version>1.0</freetts.version>
+                <jcaptcha-extension-buffered-engine.version>1.0</jcaptcha-extension-buffered-engine.version>
+                <jcaptcha-extension-sound-freetts.version>1.0</jcaptcha-extension-sound-freetts.version>
     </properties>
 
     <repositories>
@@ -526,7 +529,7 @@
         <dependency>
             <groupId>com.octo.captcha</groupId>
             <artifactId>jcaptcha-extension-sound-freetts</artifactId>
-            <version>1.0</version>
+            <version>${jcaptcha-extension-sound-freetts.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.sun.speech.freetts</groupId>
@@ -538,13 +541,13 @@
         <dependency>
             <groupId>org.mobicents.external.freetts</groupId>
             <artifactId>freetts</artifactId>
-            <version>1.0</version>
+            <version>${freetts.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.octo.captcha/jcaptcha-extension-buffered-engine -->
         <dependency>
             <groupId>com.octo.captcha</groupId>
             <artifactId>jcaptcha-extension-buffered-engine</artifactId>
-            <version>1.0</version>
+            <version>${jcaptcha-extension-buffered-engine.version}</version>
         </dependency>
                 
         <!-- For Spring Web -->
@@ -555,5 +558,26 @@
         </dependency>
         
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.octo.captcha</groupId>
+                <artifactId>jcaptcha-extension-sound-freetts</artifactId>
+                <version>${jcaptcha-extension-sound-freetts.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mobicents.external.freetts</groupId>
+                <artifactId>freetts</artifactId>
+                <version>${freetts.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.octo.captcha</groupId>
+                <artifactId>jcaptcha-extension-buffered-engine</artifactId>
+                <version>${jcaptcha-extension-buffered-engine.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
 </project>
