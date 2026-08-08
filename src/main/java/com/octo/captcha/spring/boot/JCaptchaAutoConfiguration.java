@@ -14,20 +14,29 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Auto-configuration for the JCaptcha image captcha integration, exposing a default
+ * {@link ImageCaptchaService} and (depending on the configured type) a captcha servlet or captcha filter
+ * registration bean.
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Configuration
 @ConditionalOnClass({ ImageCaptchaService.class })
 @EnableConfigurationProperties(JCaptchaProperties.class)
 public class JCaptchaAutoConfiguration {
 
+	/** Provide a default {@link ImageCaptchaService} unless one already exists. @param properties jcaptcha properties @return a DefaultManageableImageCaptchaService */
 	@Bean
 	@ConditionalOnMissingBean(ImageCaptchaService.class)
 	public ImageCaptchaService captchaService(JCaptchaProperties properties) {
-		
-		ImageCaptchaService captchaService = new DefaultManageableImageCaptchaService(); 
-		
+
+		ImageCaptchaService captchaService = new DefaultManageableImageCaptchaService();
+
 		return captchaService;
 	}
 
+	/** Register the {@link SimpleImageCaptchaServlet} when {@code jcaptcha.type=servlet}. @param properties jcaptcha properties @param imageCaptchaService image captcha service @return a servlet registration bean @throws ServletException if registration fails */
 	@Bean
 	@ConditionalOnMissingBean(name = "jcaptchaServlet")
 	@ConditionalOnProperty(prefix = JCaptchaProperties.PREFIX, value = "type", havingValue = "servlet")
@@ -45,6 +54,7 @@ public class JCaptchaAutoConfiguration {
 		return registrationBean;
 	}
 	
+	/** Register the {@link ImageCaptchaFilter} when {@code jcaptcha.type=filter}, wiring all captcha init parameters from properties. @param properties jcaptcha properties @param captchaService image captcha service @return a filter registration bean */
 	@Bean
 	@ConditionalOnMissingBean(name = "jcaptchaFilter")
 	@ConditionalOnProperty(prefix = JCaptchaProperties.PREFIX, value = "type", havingValue = "filter")

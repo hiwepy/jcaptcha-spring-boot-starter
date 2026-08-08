@@ -4,12 +4,22 @@ import java.util.NoSuchElementException;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * Configuration properties for the JCaptcha integration, bound to the {@code jcaptcha.*} prefix.
+ * <p>Selects the captcha delivery mode (servlet or filter) and configures captcha rendering/verification
+ * URLs, store keys, timeout and filter init parameters.</p>
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @ConfigurationProperties(prefix = JCaptchaProperties.PREFIX)
 public class JCaptchaProperties {
 
 	public static final String PREFIX = "jcaptcha";
 	public static final long DEFAULT_CAPTCHA_TIMEOUT = 60 * 1000;
 
+	/**
+	 * Delivery mode for captcha challenges, resolved case-insensitively when binding properties.
+	 */
 	public enum JCaptchaType {
 
 		FILTER("filter"), SERVLET("servlet");
@@ -20,18 +30,22 @@ public class JCaptchaProperties {
 			this.jcaptchaType = jcaptchaType;
 		}
 
+		/** Return the string value of this captcha type. @return the type name */
 		public String get() {
 			return jcaptchaType;
 		}
 
+		/** Compare this type to another instance. @param jcaptchaType the type to compare @return true if equal */
 		public boolean equals(JCaptchaType jcaptchaType) {
 			return this.compareTo(jcaptchaType) == 0;
 		}
 
+		/** Compare this type to the type resolved from the given string. @param jcaptchaType the type name @return true if equal */
 		public boolean equals(String jcaptchaType) {
 			return this.compareTo(JCaptchaType.valueOfIgnoreCase(jcaptchaType)) == 0;
 		}
 
+		/** Resolve a captcha type case-insensitively by name. @param key the type name @return the matching enum */
 		public static JCaptchaType valueOfIgnoreCase(String key) {
 			for (JCaptchaType jcaptchaType : JCaptchaType.values()) {
 				if (jcaptchaType.get().equalsIgnoreCase(key)) {
@@ -42,19 +56,13 @@ public class JCaptchaProperties {
 		}
 
 	}
-	
+
 	private JCaptchaType type = JCaptchaType.SERVLET;
-	/**
-	 * 验证码缓存的key
-	 */
+	/** Cache key under which the captcha challenge is stored. */
 	private String captchaStoreKey;
-	/**
-	 * 验证码创建时间缓存的key
-	 */
+	/** Cache key under which the captcha creation timestamp is stored. */
 	private String captchaDateStoreKey;
-	/**
-	 * 验证码有效期；单位（毫秒），默认 60000
-	 */
+	/** Captcha validity period in milliseconds; default is 60000 (60 seconds). */
 	private long captchaTimeout = DEFAULT_CAPTCHA_TIMEOUT;
 
 	private String captchaServletPattern = "/jcaptcha.jpg";

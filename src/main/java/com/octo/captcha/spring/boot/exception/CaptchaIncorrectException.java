@@ -19,16 +19,19 @@
 package com.octo.captcha.spring.boot.exception;
 
 /**
- * 验证码错误异常
+ * Exception thrown when a captcha challenge response is incorrect.
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @SuppressWarnings("serial")
 public class CaptchaIncorrectException extends Exception {
-	
+
+	/** Create a new exception with the default message. */
 	public CaptchaIncorrectException() {
         super("captcha incorrect");
     }
 
+    /** Create a new exception with the given detail message. @param message detail message */
     public CaptchaIncorrectException(String message) {
         super(message);
     }

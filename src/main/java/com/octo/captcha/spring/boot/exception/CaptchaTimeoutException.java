@@ -16,18 +16,21 @@
 package com.octo.captcha.spring.boot.exception;
 
 /**
- * 验证码已经过期异常
+ * Exception thrown when a captcha challenge has expired before being validated.
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @SuppressWarnings("serial")
 public class CaptchaTimeoutException extends Exception {
 
+	/** Create a new exception with the default message. */
 	public CaptchaTimeoutException() {
         super("captcha expired");
     }
 
+	/** Create a new exception with the given detail message. @param message detail message */
     public CaptchaTimeoutException(String message) {
         super(message);
     }
-    
+
 }

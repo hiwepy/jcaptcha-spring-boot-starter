@@ -20,8 +20,10 @@ import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 
 /**
- * TODO
+ * Servlet filter that renders image captchas, attaches the captcha question to requests and verifies
+ * challenge responses for configured verification URLs, forwarding to success or error URLs accordingly.
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 
 import com.octo.captcha.module.jmx.JMXRegistrationHelper;
@@ -64,21 +66,26 @@ public class ImageCaptchaFilter implements Filter {
 	protected Hashtable verificationForwards = new Hashtable();
 	protected String captchaServiceClassName;
 
+	/** Default constructor. */
 	public ImageCaptchaFilter() {
 	}
 
+	/** Return the URL at which captcha images are rendered. @return the rendering URL */
 	public static String getCaptchaRenderingURL() {
 		return captchaRenderingURL;
 	}
 
+	/** Return the request parameter name used to expose the captcha question. @return the question parameter name */
 	public static String getCaptchaQuestionParameterName() {
 		return captchaQuestionParameterName;
 	}
 
+	/** Return the request parameter name carrying the captcha challenge response. @return the response parameter name */
 	public static String getCaptchaChallengeResponseParameterName() {
 		return captchaChallengeResponseParameterName;
 	}
 
+	/** Initialise the filter by reading its init parameters and instantiating the captcha service. @param theFilterConfig filter config @throws ServletException if a mandatory parameter is missing or the service cannot be created */
 	@Override
 	public void init(FilterConfig theFilterConfig) throws ServletException {
 		captchaRenderingURL = FilterConfigUtils.getStringInitParameter(theFilterConfig, "CaptchaRenderingURL", true);
@@ -120,6 +127,7 @@ public class ImageCaptchaFilter implements Filter {
 		}
 	}
 
+	/** Route the request to captcha rendering, verification or the normal filter chain based on the servlet path. @param theRequest servlet request @param theResponse servlet response @param theFilterChain filter chain @throws IOException if an I/O error occurs @throws ServletException if a servlet error occurs */
 	@Override
 	public void doFilter(ServletRequest theRequest, ServletResponse theResponse, FilterChain theFilterChain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest)theRequest;
@@ -147,6 +155,7 @@ public class ImageCaptchaFilter implements Filter {
 
 	}
 
+	/** Unregister the captcha service from the MBean server if it was previously registered. */
 	@Override
 	public void destroy() {
 		if (this.captchaService instanceof ManageableCaptchaService && this.captchaRegisterToMBeanServer) {
@@ -156,12 +165,14 @@ public class ImageCaptchaFilter implements Filter {
 
 	}
 
+	/** Attach the captcha question for the current session to the request as an attribute. @param theRequest servlet request @param theResponse servlet response */
 	private void addQuestionToRequest(HttpServletRequest theRequest, HttpServletResponse theResponse) {
 		String captchaID = theRequest.getSession().getId();
 		String question = this.captchaService.getQuestionForID(captchaID, theRequest.getLocale());
 		theRequest.setAttribute(getCaptchaQuestionParameterName(), question);
 	}
 
+	/** Generate a captcha challenge for the current session and write the image to the response as JPEG. @param theRequest servlet request @param theResponse servlet response @throws IOException if writing the image fails */
 	private void generateAndRenderCaptcha(HttpServletRequest theRequest, HttpServletResponse theResponse) throws IOException {
 		String captchaID = theRequest.getSession().getId();
 		byte[] captchaChallengeAsJpeg = null;
@@ -186,6 +197,7 @@ public class ImageCaptchaFilter implements Filter {
 		responseOutputStream.write(captchaChallengeAsJpeg);
 	}
 
+	/** Validate the captcha challenge response for the current session, forwarding to success or error accordingly. @param theRequest servlet request @param theResponse servlet response @param theVerificationURL the verification URL being processed @param theFilterChain filter chain @throws IOException if forwarding fails @throws ServletException if forwarding fails */
 	private void verifyAnswerToACaptchaChallenge(HttpServletRequest theRequest, HttpServletResponse theResponse, String theVerificationURL, FilterChain theFilterChain) throws IOException, ServletException {
 		String captchaID = theRequest.getSession().getId();
 		String challengeResponse = theRequest.getParameter(captchaChallengeResponseParameterName);
@@ -208,6 +220,7 @@ public class ImageCaptchaFilter implements Filter {
 		}
 	}
 
+	/** Redirect to the configured error URL for the given verification URL after cleaning request attributes. @param theVerificationURL the verification URL being processed @param theRequest servlet request @param theResponse servlet response @throws ServletException if the redirect fails */
 	private void redirectError(String theVerificationURL, HttpServletRequest theRequest, HttpServletResponse theResponse) throws ServletException {
 		this.removeParametersFromRequest(theRequest);
 
@@ -220,6 +233,7 @@ public class ImageCaptchaFilter implements Filter {
 		}
 	}
 
+	/** Continue the filter chain after a successful captcha validation, after cleaning request attributes. @param theFilterChain filter chain @param theRequest servlet request @param theResponse servlet response @throws ServletException if forwarding fails */
 	private void forwardSuccess(FilterChain theFilterChain, HttpServletRequest theRequest, HttpServletResponse theResponse) throws ServletException {
 		this.removeParametersFromRequest(theRequest);
 
@@ -231,6 +245,7 @@ public class ImageCaptchaFilter implements Filter {
 		}
 	}
 
+	/** Remove captcha-related attributes from the request. @param theRequest servlet request */
 	private void removeParametersFromRequest(HttpServletRequest theRequest) {
 		theRequest.removeAttribute(getCaptchaChallengeResponseParameterName());
 		theRequest.removeAttribute(getCaptchaQuestionParameterName());

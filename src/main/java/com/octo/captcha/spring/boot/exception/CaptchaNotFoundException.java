@@ -19,18 +19,21 @@
 package com.octo.captcha.spring.boot.exception;
 
 /**
- * 验证码未找到异常
+ * Exception thrown when no comparable captcha challenge can be found for a session.
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @SuppressWarnings("serial")
 public class CaptchaNotFoundException extends Exception {
-	
+
+	/** Create a new exception with the default message. */
 	public CaptchaNotFoundException() {
 		super("no comparable captcha found");
     }
 
+	/** Create a new exception with the given detail message. @param message detail message */
     public CaptchaNotFoundException(String message) {
         super(message);
     }
-	
+
 }
