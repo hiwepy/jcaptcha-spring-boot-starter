@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, hiwepy (https://github.com/hiwepy).
+ * Copyright (c) 2018, hiwepy (https://github.com/hiwepy).
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,24 +13,26 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-/**
- * 
- */
-package com.octo.captcha.spring.boot.ext.exception;
+package com.octo.captcha.spring.boot.filter.image;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * 验证码错误异常
+ * Unit tests for {{ @link ImageCaptchaFilter }}.
+ *
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
-@SuppressWarnings("serial")
-public class CaptchaIncorrectException extends Exception {
-	
-	public CaptchaIncorrectException() {
-        super("captcha incorrect");
-    }
+@DisplayName("ImageCaptchaFilter Tests")
+class ImageCaptchaFilterTest {
 
-    public CaptchaIncorrectException(String message) {
-        super(message);
+    @Test
+    @DisplayName("Instance can be created via constructor")
+    void testInstantiation() {
+        ImageCaptchaFilter instance = new ImageCaptchaFilter();
+        assertThat(instance).isNotNull();
     }
-	
 }
