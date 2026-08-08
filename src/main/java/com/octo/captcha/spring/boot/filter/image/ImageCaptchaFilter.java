@@ -21,7 +21,7 @@ import jakarta.servlet.ServletException;
 
 /**
  * TODO
- * @author 		： <a href="https://github.com/easy-4-java">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 
 import com.octo.captcha.module.jmx.JMXRegistrationHelper;
