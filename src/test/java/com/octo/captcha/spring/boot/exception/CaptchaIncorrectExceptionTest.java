@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Unit tests for {{ @link CaptchaIncorrectException }}.
+ * Unit tests for {@link CaptchaIncorrectException}.
  *
  * @author [@Loong Wan](https://github.com/loong10k)
  * @since 1.0.0
@@ -30,9 +30,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CaptchaIncorrectExceptionTest {
 
     @Test
-    @DisplayName("Instance can be created via constructor")
-    void testInstantiation() {
+    @DisplayName("Default constructor creates instance with default message")
+    void testDefaultConstructor() {
         CaptchaIncorrectException instance = new CaptchaIncorrectException();
         assertThat(instance).isNotNull();
+        assertThat(instance.getMessage()).isEqualTo("captcha incorrect");
+    }
+
+    @Test
+    @DisplayName("Constructor with message creates instance with custom message")
+    void testMessageConstructor() {
+        CaptchaIncorrectException instance = new CaptchaIncorrectException("custom");
+        assertThat(instance).isNotNull();
+        assertThat(instance.getMessage()).isEqualTo("custom");
     }
 }

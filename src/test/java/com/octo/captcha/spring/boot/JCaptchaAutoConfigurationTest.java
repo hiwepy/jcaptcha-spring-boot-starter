@@ -15,14 +15,17 @@
  */
 package com.octo.captcha.spring.boot;
 
+import com.octo.captcha.service.image.ImageCaptchaService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Unit tests for {{ @link JCaptchaAutoConfiguration }}.
+ * Unit tests for {@link JCaptchaAutoConfiguration}.
  *
  * <p>Verifies the auto-configuration activates under the expected conditions
  * and exposes its declared beans.</p>
@@ -33,7 +36,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("JCaptchaAutoConfiguration Tests")
 class JCaptchaAutoConfigurationTest {
 
-    private final ApplicationContextRunner runner = new ApplicationContextRunner();
+    private final ApplicationContextRunner runner = new ApplicationContextRunner()
+            .withUserConfiguration(JCaptchaAutoConfiguration.class);
 
     @Test
     @DisplayName("Auto-configuration class can be instantiated")
@@ -43,17 +47,72 @@ class JCaptchaAutoConfigurationTest {
     }
 
     @Test
-    @DisplayName("Auto-configuration loads when 'jcaptcha.type=servlet'")
+    @DisplayName("Auto-configuration loads captchaService and servlet bean when type=servlet")
     void testLoadsWhenEnabledPropertySet() {
-        runner.withUserConfiguration(JCaptchaAutoConfiguration.class)
-                .withPropertyValues("jcaptcha.type=servlet")
-                .run(context -> assertThat(context).hasSingleBean(JCaptchaAutoConfiguration.class));
+        runner.withPropertyValues("jcaptcha.type=servlet")
+                .run(context -> {
+                    assertThat(context).hasSingleBean(ImageCaptchaService.class);
+                    assertThat(context).hasBean("captchaService");
+                    assertThat(context).hasSingleBean(ServletRegistrationBean.class);
+                    assertThat(context).doesNotHaveBean(FilterRegistrationBean.class);
+                });
     }
 
     @Test
-    @DisplayName("Auto-configuration is absent when property is not set")
+    @DisplayName("Auto-configuration loads captchaService but no servlet/filter bean when property is absent")
     void testNotLoadedWhenPropertyAbsent() {
-        runner.withUserConfiguration(JCaptchaAutoConfiguration.class)
-                .run(context -> assertThat(context).doesNotHaveBean(JCaptchaAutoConfiguration.class));
+        runner.run(context -> {
+                    assertThat(context).hasSingleBean(ImageCaptchaService.class);
+                    assertThat(context).hasBean("captchaService");
+                    assertThat(context).doesNotHaveBean(ServletRegistrationBean.class);
+                    assertThat(context).doesNotHaveBean(FilterRegistrationBean.class);
+                });
+    }
+
+    @Test
+    @DisplayName("Auto-configuration loads filter bean when type=filter")
+    void testLoadsFilterWhenTypeFilter() {
+        runner.withPropertyValues("jcaptcha.type=filter")
+                .run(context -> {
+                    assertThat(context).hasSingleBean(ImageCaptchaService.class);
+                    assertThat(context).hasSingleBean(FilterRegistrationBean.class);
+                    assertThat(context).doesNotHaveBean(ServletRegistrationBean.class);
+                });
+    }
+
+    @Test
+    @DisplayName("JCaptchaType enum resolves case-insensitively")
+    void testJCaptchaTypeEnum() {
+        assertThat(JCaptchaProperties.JCaptchaType.valueOfIgnoreCase("filter"))
+                .isEqualTo(JCaptchaProperties.JCaptchaType.FILTER);
+        assertThat(JCaptchaProperties.JCaptchaType.valueOfIgnoreCase("SERVLET"))
+                .isEqualTo(JCaptchaProperties.JCaptchaType.SERVLET);
+    }
+
+    @Test
+    @DisplayName("JCaptchaType enum get() returns the string value")
+    void testJCaptchaTypeGet() {
+        assertThat(JCaptchaProperties.JCaptchaType.FILTER.get()).isEqualTo("filter");
+        assertThat(JCaptchaProperties.JCaptchaType.SERVLET.get()).isEqualTo("servlet");
+    }
+
+    @Test
+    @DisplayName("JCaptchaType enum equals methods work correctly")
+    void testJCaptchaTypeEquals() {
+        JCaptchaProperties.JCaptchaType filter = JCaptchaProperties.JCaptchaType.FILTER;
+        assertThat(filter.equals(JCaptchaProperties.JCaptchaType.FILTER)).isTrue();
+        assertThat(filter.equals(JCaptchaProperties.JCaptchaType.SERVLET)).isFalse();
+        assertThat(filter.equals("filter")).isTrue();
+        assertThat(filter.equals("FILTER")).isTrue();
+        assertThat(filter.equals("servlet")).isFalse();
+    }
+
+    @Test
+    @DisplayName("JCaptchaType valueOfIgnoreCase throws for unknown key")
+    void testJCaptchaTypeValueOfIgnoreCaseThrows() {
+        org.junit.jupiter.api.Assertions.assertThrows(
+                java.util.NoSuchElementException.class,
+                () -> JCaptchaProperties.JCaptchaType.valueOfIgnoreCase("unknown")
+        );
     }
 }

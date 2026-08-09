@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Unit tests for {{ @link CaptchaNotFoundException }}.
+ * Unit tests for {@link CaptchaNotFoundException}.
  *
  * @author [@Loong Wan](https://github.com/loong10k)
  * @since 1.0.0
@@ -30,9 +30,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CaptchaNotFoundExceptionTest {
 
     @Test
-    @DisplayName("Instance can be created via constructor")
-    void testInstantiation() {
+    @DisplayName("Default constructor creates instance with default message")
+    void testDefaultConstructor() {
         CaptchaNotFoundException instance = new CaptchaNotFoundException();
         assertThat(instance).isNotNull();
+        assertThat(instance.getMessage()).isEqualTo("no comparable captcha found");
+    }
+
+    @Test
+    @DisplayName("Constructor with message creates instance with custom message")
+    void testMessageConstructor() {
+        CaptchaNotFoundException instance = new CaptchaNotFoundException("custom");
+        assertThat(instance).isNotNull();
+        assertThat(instance.getMessage()).isEqualTo("custom");
     }
 }

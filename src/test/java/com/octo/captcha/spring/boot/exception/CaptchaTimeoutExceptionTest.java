@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Unit tests for {{ @link CaptchaTimeoutException }}.
+ * Unit tests for {@link CaptchaTimeoutException}.
  *
  * @author [@Loong Wan](https://github.com/loong10k)
  * @since 1.0.0
@@ -30,9 +30,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CaptchaTimeoutExceptionTest {
 
     @Test
-    @DisplayName("Instance can be created via constructor")
-    void testInstantiation() {
+    @DisplayName("Default constructor creates instance with default message")
+    void testDefaultConstructor() {
         CaptchaTimeoutException instance = new CaptchaTimeoutException();
         assertThat(instance).isNotNull();
+        assertThat(instance.getMessage()).isEqualTo("captcha expired");
+    }
+
+    @Test
+    @DisplayName("Constructor with message creates instance with custom message")
+    void testMessageConstructor() {
+        CaptchaTimeoutException instance = new CaptchaTimeoutException("custom");
+        assertThat(instance).isNotNull();
+        assertThat(instance.getMessage()).isEqualTo("custom");
     }
 }

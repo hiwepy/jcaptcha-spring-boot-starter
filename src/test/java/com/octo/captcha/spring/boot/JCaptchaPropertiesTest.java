@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Unit tests for {{ @link JCaptchaProperties }}.
+ * Unit tests for {@link JCaptchaProperties}.
  *
  * <p>Verifies default values, getters/setters and POJO contract.</p>
  *
@@ -30,176 +30,134 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @DisplayName("JCaptchaProperties Tests")
 class JCaptchaPropertiesTest {
+
     @Test
-    @DisplayName("Default constructor creates non-null instance")
+    @DisplayName("Default constructor creates non-null instance with expected defaults")
     void testDefaultInstance() {
         JCaptchaProperties props = new JCaptchaProperties();
         assertThat(props).isNotNull();
-    }
-
-    @Test
-    @DisplayName("Field 'captchaStoreKey' can be set and read")
-    void testCaptchaStoreKeyField() {
-        JCaptchaProperties props = new JCaptchaProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = JCaptchaProperties.class.getDeclaredField("captchaStoreKey");
-            f.setAccessible(true);
-            f.set(props, "test");
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
-    }
-
-    @Test
-    @DisplayName("Field 'captchaDateStoreKey' can be set and read")
-    void testCaptchaDateStoreKeyField() {
-        JCaptchaProperties props = new JCaptchaProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = JCaptchaProperties.class.getDeclaredField("captchaDateStoreKey");
-            f.setAccessible(true);
-            f.set(props, "test");
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
-    }
-
-    @Test
-    @DisplayName("Field 'captchaTimeout' can be set and read")
-    void testCaptchaTimeoutField() {
-        JCaptchaProperties props = new JCaptchaProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = JCaptchaProperties.class.getDeclaredField("captchaTimeout");
-            f.setAccessible(true);
-            f.set(props, 42L);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
-    }
-
-    @Test
-    @DisplayName("Field 'captchaServletPattern' can be set and read")
-    void testCaptchaServletPatternField() {
-        JCaptchaProperties props = new JCaptchaProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = JCaptchaProperties.class.getDeclaredField("captchaServletPattern");
-            f.setAccessible(true);
-            f.set(props, "test");
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
-    }
-
-    @Test
-    @DisplayName("Field 'captchaFilterPattern' can be set and read")
-    void testCaptchaFilterPatternField() {
-        JCaptchaProperties props = new JCaptchaProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = JCaptchaProperties.class.getDeclaredField("captchaFilterPattern");
-            f.setAccessible(true);
-            f.set(props, "test");
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
-    }
-
-    @Test
-    @DisplayName("Field 'captchaRegisterToMBeanServer' can be set and read")
-    void testCaptchaRegisterToMBeanServerField() {
-        JCaptchaProperties props = new JCaptchaProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = JCaptchaProperties.class.getDeclaredField("captchaRegisterToMBeanServer");
-            f.setAccessible(true);
-            f.set(props, true);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
-    }
-
-    @Test
-    @DisplayName("Field 'captchaQuestionParameterName' can be set and read")
-    void testCaptchaQuestionParameterNameField() {
-        JCaptchaProperties props = new JCaptchaProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = JCaptchaProperties.class.getDeclaredField("captchaQuestionParameterName");
-            f.setAccessible(true);
-            f.set(props, "test");
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
-    }
-
-    @Test
-    @DisplayName("Field 'captchaRenderingURL' can be set and read")
-    void testCaptchaRenderingURLField() {
-        JCaptchaProperties props = new JCaptchaProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = JCaptchaProperties.class.getDeclaredField("captchaRenderingURL");
-            f.setAccessible(true);
-            f.set(props, "test");
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
-    }
-
-    @Test
-    @DisplayName("Field 'captchaErrorURL' can be set and read")
-    void testCaptchaErrorURLField() {
-        JCaptchaProperties props = new JCaptchaProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = JCaptchaProperties.class.getDeclaredField("captchaErrorURL");
-            f.setAccessible(true);
-            f.set(props, "test");
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
-    }
-
-    @Test
-    @DisplayName("Field 'captchaChallengeResponseParameterName' can be set and read")
-    void testCaptchaChallengeResponseParameterNameField() {
-        JCaptchaProperties props = new JCaptchaProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = JCaptchaProperties.class.getDeclaredField("captchaChallengeResponseParameterName");
-            f.setAccessible(true);
-            f.set(props, "test");
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        assertThat(props.getType()).isEqualTo(JCaptchaProperties.JCaptchaType.SERVLET);
+        assertThat(props.getCaptchaTimeout()).isEqualTo(JCaptchaProperties.DEFAULT_CAPTCHA_TIMEOUT);
+        assertThat(props.getCaptchaServletPattern()).isEqualTo("/jcaptcha.jpg");
+        assertThat(props.getCaptchaFilterPattern()).isEqualTo("/jcaptcha");
+        assertThat(props.isCaptchaRegisterToMBeanServer()).isFalse();
+        assertThat(props.getCaptchaVerificationURLs()).isEmpty();
+        assertThat(props.getCaptchaForwardErrorURLs()).isEmpty();
     }
 
     @Test
     @DisplayName("Public constant 'PREFIX' has expected value")
     void testPREFIXConstant() {
         assertThat(JCaptchaProperties.PREFIX).isEqualTo("jcaptcha");
+    }
+
+    @Test
+    @DisplayName("Public constant 'DEFAULT_CAPTCHA_TIMEOUT' has expected value")
+    void testDefaultCaptchaTimeout() {
+        assertThat(JCaptchaProperties.DEFAULT_CAPTCHA_TIMEOUT).isEqualTo(60_000L);
+    }
+
+    @Test
+    @DisplayName("Field 'type' can be set and read")
+    void testTypeField() {
+        JCaptchaProperties props = new JCaptchaProperties();
+        props.setType(JCaptchaProperties.JCaptchaType.FILTER);
+        assertThat(props.getType()).isEqualTo(JCaptchaProperties.JCaptchaType.FILTER);
+    }
+
+    @Test
+    @DisplayName("Field 'captchaStoreKey' can be set and read")
+    void testCaptchaStoreKeyField() {
+        JCaptchaProperties props = new JCaptchaProperties();
+        props.setCaptchaStoreKey("myKey");
+        assertThat(props.getCaptchaStoreKey()).isEqualTo("myKey");
+    }
+
+    @Test
+    @DisplayName("Field 'captchaDateStoreKey' can be set and read")
+    void testCaptchaDateStoreKeyField() {
+        JCaptchaProperties props = new JCaptchaProperties();
+        props.setCaptchaDateStoreKey("myDateKey");
+        assertThat(props.getCaptchaDateStoreKey()).isEqualTo("myDateKey");
+    }
+
+    @Test
+    @DisplayName("Field 'captchaTimeout' can be set and read")
+    void testCaptchaTimeoutField() {
+        JCaptchaProperties props = new JCaptchaProperties();
+        props.setCaptchaTimeout(42L);
+        assertThat(props.getCaptchaTimeout()).isEqualTo(42L);
+    }
+
+    @Test
+    @DisplayName("Field 'captchaServletPattern' can be set and read")
+    void testCaptchaServletPatternField() {
+        JCaptchaProperties props = new JCaptchaProperties();
+        props.setCaptchaServletPattern("/custom.jpg");
+        assertThat(props.getCaptchaServletPattern()).isEqualTo("/custom.jpg");
+    }
+
+    @Test
+    @DisplayName("Field 'captchaFilterPattern' can be set and read")
+    void testCaptchaFilterPatternField() {
+        JCaptchaProperties props = new JCaptchaProperties();
+        props.setCaptchaFilterPattern("/custom");
+        assertThat(props.getCaptchaFilterPattern()).isEqualTo("/custom");
+    }
+
+    @Test
+    @DisplayName("Field 'captchaRegisterToMBeanServer' can be set and read")
+    void testCaptchaRegisterToMBeanServerField() {
+        JCaptchaProperties props = new JCaptchaProperties();
+        props.setCaptchaRegisterToMBeanServer(true);
+        assertThat(props.isCaptchaRegisterToMBeanServer()).isTrue();
+    }
+
+    @Test
+    @DisplayName("Field 'captchaQuestionParameterName' can be set and read")
+    void testCaptchaQuestionParameterNameField() {
+        JCaptchaProperties props = new JCaptchaProperties();
+        props.setCaptchaQuestionParameterName("question");
+        assertThat(props.getCaptchaQuestionParameterName()).isEqualTo("question");
+    }
+
+    @Test
+    @DisplayName("Field 'captchaRenderingURL' can be set and read")
+    void testCaptchaRenderingURLField() {
+        JCaptchaProperties props = new JCaptchaProperties();
+        props.setCaptchaRenderingURL("/render");
+        assertThat(props.getCaptchaRenderingURL()).isEqualTo("/render");
+    }
+
+    @Test
+    @DisplayName("Field 'captchaErrorURL' can be set and read")
+    void testCaptchaErrorURLField() {
+        JCaptchaProperties props = new JCaptchaProperties();
+        props.setCaptchaErrorURL("/error");
+        assertThat(props.getCaptchaErrorURL()).isEqualTo("/error");
+    }
+
+    @Test
+    @DisplayName("Field 'captchaChallengeResponseParameterName' can be set and read")
+    void testCaptchaChallengeResponseParameterNameField() {
+        JCaptchaProperties props = new JCaptchaProperties();
+        props.setCaptchaChallengeResponseParameterName("response");
+        assertThat(props.getCaptchaChallengeResponseParameterName()).isEqualTo("response");
+    }
+
+    @Test
+    @DisplayName("Field 'captchaVerificationURLs' can be set and read")
+    void testCaptchaVerificationURLsField() {
+        JCaptchaProperties props = new JCaptchaProperties();
+        props.setCaptchaVerificationURLs("/verify");
+        assertThat(props.getCaptchaVerificationURLs()).isEqualTo("/verify");
+    }
+
+    @Test
+    @DisplayName("Field 'captchaForwardErrorURLs' can be set and read")
+    void testCaptchaForwardErrorURLsField() {
+        JCaptchaProperties props = new JCaptchaProperties();
+        props.setCaptchaForwardErrorURLs("/fwd");
+        assertThat(props.getCaptchaForwardErrorURLs()).isEqualTo("/fwd");
     }
 }
