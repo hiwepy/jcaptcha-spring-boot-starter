@@ -21,7 +21,7 @@ import jakarta.servlet.ServletException;
 
 /**
  * TODO
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 
 import com.octo.captcha.module.jmx.JMXRegistrationHelper;

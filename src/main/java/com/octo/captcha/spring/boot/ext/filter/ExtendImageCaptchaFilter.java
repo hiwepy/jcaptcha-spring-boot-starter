@@ -22,7 +22,7 @@ import com.octo.captcha.module.filter.image.ImageCaptchaFilter;
 
 /**
  * TODO
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class ExtendImageCaptchaFilter extends ImageCaptchaFilter {
 
