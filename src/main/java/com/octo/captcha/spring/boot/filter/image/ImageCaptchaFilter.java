@@ -22,7 +22,7 @@ import jakarta.servlet.ServletException;
 /**
  * Servlet filter that renders image captchas, attaches the captcha question to requests and verifies
  * challenge responses for configured verification URLs, forwarding to success or error URLs accordingly.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 

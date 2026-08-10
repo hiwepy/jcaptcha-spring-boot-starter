@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Configuration properties for the JCaptcha integration, bound to the {@code jcaptcha.*} prefix.
  * <p>Selects the captcha delivery mode (servlet or filter) and configures captcha rendering/verification
  * URLs, store keys, timeout and filter init parameters.</p>
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @ConfigurationProperties(prefix = JCaptchaProperties.PREFIX)

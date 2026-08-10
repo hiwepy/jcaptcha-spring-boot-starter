@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet that generates and serves a JPEG captcha image for the requesting session, and exposes a
  * static helper to validate the captcha response submitted by the user.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class SimpleImageCaptchaServlet extends HttpServlet implements Servlet {

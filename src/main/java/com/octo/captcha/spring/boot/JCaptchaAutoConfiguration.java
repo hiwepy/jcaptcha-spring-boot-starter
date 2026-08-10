@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
  * Auto-configuration for the JCaptcha image captcha integration, exposing a default
  * {@link ImageCaptchaService} and (depending on the configured type) a captcha servlet or captcha filter
  * registration bean.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration

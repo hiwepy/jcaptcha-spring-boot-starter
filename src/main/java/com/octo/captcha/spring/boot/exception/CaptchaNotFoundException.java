@@ -20,7 +20,7 @@ package com.octo.captcha.spring.boot.exception;
 
 /**
  * Exception thrown when no comparable captcha challenge can be found for a session.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @SuppressWarnings("serial")

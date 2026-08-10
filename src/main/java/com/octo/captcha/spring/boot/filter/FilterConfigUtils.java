@@ -7,7 +7,7 @@ import jakarta.servlet.ServletException;
 /**
  * Utility for reading typed init parameters (string, integer, boolean) from a servlet {@link FilterConfig},
  * throwing {@link ServletException} when mandatory parameters are missing or invalid.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class FilterConfigUtils {

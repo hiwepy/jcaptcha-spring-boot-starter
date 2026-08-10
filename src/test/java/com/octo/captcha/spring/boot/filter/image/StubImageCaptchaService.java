@@ -10,7 +10,7 @@ import java.util.Locale;
  * Minimal stub implementation of {@link ImageCaptchaService} for unit testing
  * {@link ImageCaptchaFilter} without loading the full jcaptcha engine.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class StubImageCaptchaService implements ImageCaptchaService {
