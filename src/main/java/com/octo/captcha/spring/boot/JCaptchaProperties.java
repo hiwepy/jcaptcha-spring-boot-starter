@@ -4,13 +4,6 @@ import java.util.NoSuchElementException;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-/**
- * Configuration properties for the JCaptcha integration, bound to the {@code jcaptcha.*} prefix.
- * <p>Selects the captcha delivery mode (servlet or filter) and configures captcha rendering/verification
- * URLs, store keys, timeout and filter init parameters.</p>
- * @author <a href="https://github.com/loong10k">Loong Wan</a>
- * @since 1.0.0
- */
 @ConfigurationProperties(prefix = JCaptchaProperties.PREFIX)
 public class JCaptchaProperties {
 
@@ -19,6 +12,8 @@ public class JCaptchaProperties {
 
 	/**
 	 * Delivery mode for captcha challenges, resolved case-insensitively when binding properties.
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
 	 */
 	public enum JCaptchaType {
 
@@ -75,107 +70,136 @@ public class JCaptchaProperties {
 	private String captchaChallengeResponseParameterName = null;
 	private String captchaVerificationURLs = "";
 	private String captchaForwardErrorURLs = "";
+	/** Gets the type. */
 
 	public JCaptchaType getType() {
 		return type;
 	}
+	/** Sets the type. */
 
 	public void setType(JCaptchaType type) {
 		this.type = type;
 	}
+	/** Gets the captcha store key. */
 
 	public String getCaptchaStoreKey() {
 		return captchaStoreKey;
 	}
+	/** Sets the captcha store key. */
 
 	public void setCaptchaStoreKey(String captchaStoreKey) {
 		this.captchaStoreKey = captchaStoreKey;
 	}
+	/** Gets the captcha date store key. */
 
 	public String getCaptchaDateStoreKey() {
 		return captchaDateStoreKey;
 	}
+	/** Sets the captcha date store key. */
 
 	public void setCaptchaDateStoreKey(String captchaDateStoreKey) {
 		this.captchaDateStoreKey = captchaDateStoreKey;
 	}
+	/** Gets the captcha timeout. */
 
 	public long getCaptchaTimeout() {
 		return captchaTimeout;
 	}
+	/** Sets the captcha timeout. */
 
 	public void setCaptchaTimeout(long captchaTimeout) {
 		this.captchaTimeout = captchaTimeout;
 	}
+	/** Gets the captcha servlet pattern. */
 	
 
 	public String getCaptchaServletPattern() {
 		return captchaServletPattern;
 	}
+	/** Sets the captcha servlet pattern. */
 
 	public void setCaptchaServletPattern(String captchaServletPattern) {
 		this.captchaServletPattern = captchaServletPattern;
 	}
+	/**
+	 * <p>Is captcha register to m bean server.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isCaptchaRegisterToMBeanServer() {
 		return captchaRegisterToMBeanServer;
 	}
+	/** Sets the captcha register to m bean server. */
 
 	public void setCaptchaRegisterToMBeanServer(boolean captchaRegisterToMBeanServer) {
 		this.captchaRegisterToMBeanServer = captchaRegisterToMBeanServer;
 	}
+	/** Gets the captcha question parameter name. */
 
 	public String getCaptchaQuestionParameterName() {
 		return captchaQuestionParameterName;
 	}
+	/** Sets the captcha question parameter name. */
 
 	public void setCaptchaQuestionParameterName(String captchaQuestionParameterName) {
 		this.captchaQuestionParameterName = captchaQuestionParameterName;
 	}
+	/** Gets the captcha rendering u r l. */
 
 	public String getCaptchaRenderingURL() {
 		return captchaRenderingURL;
 	}
+	/** Sets the captcha rendering u r l. */
 
 	public void setCaptchaRenderingURL(String captchaRenderingURL) {
 		this.captchaRenderingURL = captchaRenderingURL;
 	}
+	/** Gets the captcha error u r l. */
 
 	public String getCaptchaErrorURL() {
 		return captchaErrorURL;
 	}
+	/** Sets the captcha error u r l. */
 
 	public void setCaptchaErrorURL(String captchaErrorURL) {
 		this.captchaErrorURL = captchaErrorURL;
 	}
+	/** Gets the captcha challenge response parameter name. */
 
 	public String getCaptchaChallengeResponseParameterName() {
 		return captchaChallengeResponseParameterName;
 	}
+	/** Sets the captcha challenge response parameter name. */
 
 	public void setCaptchaChallengeResponseParameterName(String captchaChallengeResponseParameterName) {
 		this.captchaChallengeResponseParameterName = captchaChallengeResponseParameterName;
 	}
+	/** Gets the captcha verification u r ls. */
 
 	public String getCaptchaVerificationURLs() {
 		return captchaVerificationURLs;
 	}
+	/** Sets the captcha verification u r ls. */
 
 	public void setCaptchaVerificationURLs(String captchaVerificationURLs) {
 		this.captchaVerificationURLs = captchaVerificationURLs;
 	}
+	/** Gets the captcha forward error u r ls. */
 
 	public String getCaptchaForwardErrorURLs() {
 		return captchaForwardErrorURLs;
 	}
+	/** Sets the captcha forward error u r ls. */
 
 	public void setCaptchaForwardErrorURLs(String captchaForwardErrorURLs) {
 		this.captchaForwardErrorURLs = captchaForwardErrorURLs;
 	}
+	/** Gets the captcha filter pattern. */
 
 	public String getCaptchaFilterPattern() {
 		return captchaFilterPattern;
 	}
+	/** Sets the captcha filter pattern. */
 
 	public void setCaptchaFilterPattern(String captchaFilterPattern) {
 		this.captchaFilterPattern = captchaFilterPattern;

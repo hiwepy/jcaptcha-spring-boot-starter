@@ -64,7 +64,7 @@ public class JCaptchaAutoConfiguration {
 		FilterRegistrationBean<ImageCaptchaFilter> registrationBean = new FilterRegistrationBean<ImageCaptchaFilter>();
 		registrationBean.setFilter(new ImageCaptchaFilter());
 
-		// 默认参数
+		// Default parameters
 		registrationBean.addInitParameter(ImageCaptchaFilter.CAPTCHA_ERROR_URL_PARAMETER, properties.getCaptchaErrorURL());
 		registrationBean.addInitParameter(ImageCaptchaFilter.CAPTCHA_RENDERING_URL_PARAMETER, properties.getCaptchaErrorURL());
 		registrationBean.addInitParameter(ImageCaptchaFilter.CAPTCHA_VERIFICATION_URLS_PARAMETER, properties.getCaptchaVerificationURLs());

@@ -19,12 +19,6 @@ import com.octo.captcha.spring.boot.filter.FilterConfigUtils;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 
-/**
- * Servlet filter that renders image captchas, attaches the captcha question to requests and verifies
- * challenge responses for configured verification URLs, forwarding to success or error URLs accordingly.
- * @author <a href="https://github.com/loong10k">Loong Wan</a>
- * @since 1.0.0
- */
 
 import com.octo.captcha.module.jmx.JMXRegistrationHelper;
 import com.octo.captcha.service.CaptchaServiceException;
@@ -45,6 +39,12 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import javax.imageio.ImageIO;
 
+/**
+ * <p>Filter for image captcha filter processing.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class ImageCaptchaFilter implements Filter {
 	public static final String JMX_REGISTERING_NAME = "com.octo.captcha.module.servlet:object=ImageCaptchaFilter";
 	public static final String CSV_DELIMITER = ";";
